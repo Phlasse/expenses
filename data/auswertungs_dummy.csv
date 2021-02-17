@@ -1,0 +1,23 @@
+id,amount,product/store,organic percentage,category,day,month,year
+1,25.21,amazon,NaN,other,01,01,2021
+2,28.01,lidl,50,grocery,03,01,2021
+3,44.44,lidl,70,grocery,05,01,2021
+4,30.20,alnatura,100,grocery,08,01,2021
+5,10.33,hm,00,clothing,11,01,2021
+6,99.99,amazon,NaN,tech,15,01,2021
+7,60.01,lidl,60,grocery,18,01,2021
+8,20.00,rewe,40,grocery,20,01,2021
+9,30.00,sirplus,30,grocery,25,01,2021
+10,33.33,edeka,80,grocery,28,01,2021
+11,30.00,foodist,100,grocery,31,01,2021
+12,33.33,mango,00,clothing,02,02,2021
+13,40.21,amazon,NaN,other,05,02,2021
+14,150.25,edeka,80,grocery,10,02,2021
+15,55.55,amazon,NaN,other,15,02,2021
+16,9.35,lidl,30,grocery,17,02,2021
+17,50.00,amazon,NaN,other,20,02,2001
+18,25.21,lidl,50,grocery,22,02,2021
+19,10.00,bahn,NaN,transportation,22,02,2021
+20,69.69,rewe,70,grocery,25,02,2021
+21,10.00,bvg,NaN,transportation,26,02,2021
+22,33.33,dm,50,cosmetics,28,02,2021
