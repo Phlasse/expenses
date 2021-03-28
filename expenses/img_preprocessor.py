@@ -73,7 +73,15 @@ def img_to_str(img):
     """Hier wird das preprocessierte Bild zum string verarbeitet"""
     # Adding custom options
     #custom_config = r'--oem 3 --psm 6'
-    result = pytesseract.image_to_string(img)#, config=custom_config)
+    try:
+        result = pytesseract.image_to_string(img)#, config=custom_config)
+    except:
+        print("there was an issue with the path so the windows workaround was taken")
+    try:
+        pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+        result = pytesseract.image_to_string(img)#, config=custom_config)
+    except:
+        print("The windows workaround was not used")
 
     return result
 

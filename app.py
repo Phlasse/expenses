@@ -13,7 +13,7 @@ def load_file(path, file):
     return img
 
 def main():
-    img = load_file(path, files[1])
+    img = load_file(path, files[0])
     print("Image was loaded")
     pre_imgs = pre.pipeline(img)
     print("Image has been prepocessed in several ways")
