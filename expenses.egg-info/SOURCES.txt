@@ -1,0 +1,15 @@
+setup.py
+expenses/__init__.py
+expenses/db_manager.py
+expenses/evaluation.py
+expenses/ext_test.py
+expenses/img_postprocessor.py
+expenses/img_preprocessor.py
+expenses/preprocessor.py
+expenses/sql_db_manager.py
+expenses.egg-info/PKG-INFO
+expenses.egg-info/SOURCES.txt
+expenses.egg-info/dependency_links.txt
+expenses.egg-info/requires.txt
+expenses.egg-info/top_level.txt
+scripts/expenses-run
