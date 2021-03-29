@@ -41,8 +41,6 @@ tb-nightly==2.4.0a20201101
 tensorboard==2.0.2
 tensorboard-plugin-wit==1.7.0
 termcolor==1.1.0
-tf-estimator-nightly==2.4.0.dev2020102301
-tf-nightly==2.5.0.dev20201101
 typing-extensions==3.7.4.3
 urllib3==1.25.11
 Werkzeug==1.0.1

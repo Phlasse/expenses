@@ -73,6 +73,7 @@ def img_to_str(img):
     """Hier wird das preprocessierte Bild zum string verarbeitet"""
     # Adding custom options
     #custom_config = r'--oem 3 --psm 6'
+    result = ""
     try:
         result = pytesseract.image_to_string(img)#, config=custom_config)
     except:
@@ -82,7 +83,6 @@ def img_to_str(img):
         result = pytesseract.image_to_string(img)#, config=custom_config)
     except:
         print("The windows workaround was not used")
-
     return result
 
 def pipeline(img,pipe_select = 0):
