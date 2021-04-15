@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from ocr.ext_test import main
-
+#from ocr.ext_test import main
+from expenses.terminal_app import main
 main()
