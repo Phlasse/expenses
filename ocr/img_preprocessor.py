@@ -2,7 +2,7 @@ import cv2
 import pytesseract
 import os
 import numpy as np
-import expenses.preprocessor as pre
+import ocr.preprocessor as pre
 
 def thresh_pipeline(img, detail_print = False):
     ret,thresh1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)

@@ -1,8 +1,8 @@
 import cv2
 import os
 import numpy as np
-import expenses.img_preprocessor as pre
-import expenses.img_postprocessor as post
+import ocr.img_preprocessor as pre
+import ocr.img_postprocessor as post
 
 root = os.getenv('PRIVATE_ROOT')
 path = root+'expenses/data/'
