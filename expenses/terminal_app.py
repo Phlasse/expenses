@@ -4,24 +4,31 @@ import pandas as pd
 def startup():
     print("Welcome to the expense tracker\n")
     try: 
-        user_df = pd.read_csv("data/user.csv")
+        user_tables = dbm.read_table_names("expenses")
+        print("Which user do you want to use?")
+        print(0," : ","Create new user")
+        for i in range(len(user_tables)):
+            print(i+1," : ",user_tables[i])
+        user_choice = int(input("\n"))
+        if user_choice == 0:
+            user = add_user(False)
+        else:
+            user = user_tables[user_choice-1]
     except:
-        user_df =pd.DataFrame(columns=["username"])
-        user_df.to_csv("data/user.csv")
-    if len(user_df.username.to_list()) == 0:
-        print("You are new!\n\n")
-        add_user()
-    else:
+        user = add_user(True)
+    return user
+
     
-def add_user(user_df):
-    new_name = Input("What will be your username?")
-    user_df.username = user_df.to_list().append(new_name)
-    user_df.to_csv("data/user.csv")
-    return user_df
+def add_user(first_user=False):
+    if first_user is True:
+        print("You are the first user of this programm.\n")
+    new_name = input("What will be your username?\n\n")
+    dbm.create_sql_database(new_name)
+    return new_name
 
 def main():
-    startup() 
-        
+    user = startup() 
+    print(f"So what do you want to do {user}")
     
 if __name__ == '__main__':
     main()

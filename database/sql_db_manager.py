@@ -2,11 +2,12 @@ import sqlite3
 import pandas as pd
 
 Testzeile = (28.35, "lidl", 50, "grocery", 21, 12, 1990)
-direction = "../data/"
+direction = "data/"
+database_name = "expenses"
 
 
-def create_sql_database(db_name, table_name):
-    #connect databas
+def create_sql_database(table_name, db_name = database_name):
+    #connect database
     conn = sqlite3.connect(f"{direction}{db_name}.db")
 
     # ceate a table
@@ -56,8 +57,23 @@ def fetch_data(db_name, table_name):
     print(df)
     conn.commit()
     conn.close()
-
     return
+
+def read_table_names(db_name=database_name):
+    #connect database
+    conn = sqlite3.connect(f"{direction}{db_name}.db")
+
+    # ceate a table
+    c = conn.cursor()
+
+    # Create a Table
+    c.execute(""" SELECT name from sqlite_master where type= 'table' """)
+    # Datatypes:
+    user_tables = c.fetchall()[0]
+    
+    # close our connection
+    conn.close()
+    return user_tables
 
 if __name__ == '__main__':
     #main()
