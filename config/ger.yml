@@ -1,0 +1,9 @@
+currency: Euro
+
+common_crocery_stores:
+  - Rewe
+  - Edeka
+  - Lidl
+  - Aldi
+  - Kaufland
+
