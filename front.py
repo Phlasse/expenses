@@ -55,10 +55,10 @@ if expense_choice == 'Variable Expenses':
         variable_change = st.sidebar.button("Commit changes?")
         variable_delete = st.sidebar.button("Delete Expense?")
         if variable_change == True:
-            db.change_variable_expense(vari_modify, [new_store, new_category, new_amount, new_date])
+            db.change_variable_expense(vari_modify, [new_amount, new_store, new_category, new_date])
         if variable_delete==True:
             db.delete_variable_expense(vari_modify, [new_store, new_category, new_amount, new_date])
-        
+                
 ########## Fixed Expenses       ##############################
 elif expense_choice == 'Fixed Expenses':
     fix_mode = st.sidebar.radio(

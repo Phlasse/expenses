@@ -90,8 +90,16 @@ def add_variable_expense(content, db_name= database_name, table_name="variable_e
     print("line added")
     return
 
-def change_variable_expense(id, content):
+def change_variable_expense(id, content, table_name="variable_expenses", db_name=database_name):
+    conn = sqlite3.connect(f"{direction}{db_name}.db")
+    c = conn.cursor()
+    print(content)
+    c.execute(f"Update {table_name} SET amount={content[0]}, date = {content[3]} WHERE variable_expense_id={id}")
+    conn.commit()
+    conn.close()
+    print("line changed")
     return
+
 
 def delete_variable_expense(id):
     return
