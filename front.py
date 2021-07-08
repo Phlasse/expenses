@@ -84,13 +84,13 @@ elif expense_choice == 'Fixed Expenses':
         "What do you want to do?",
         ('Add Expense', 'Manage Entries')
     )
-    organisation_uniques = db.get_uniques("fixed_expenses", "organization")
+    organisation_uniques = db.get_uniques("fixed_expenses", "organisation")
     if len(organisation_uniques) == 0:
-        list_of_organizations = standard_organisations
+        list_of_organisations = standard_organisations
     else:
-        organisation_uniques = db.get_uniques("fixed_expenses", "organization")[0].to_list()
-        list_of_organizations = standard_organisations + organisation_uniques
-        list_of_organizations = list(set(list_of_organizations))
+        organisation_uniques = db.get_uniques("fixed_expenses", "organisation")[0].to_list()
+        list_of_organisations = standard_organisations + organisation_uniques
+        list_of_organisations = list(set(list_of_organisations))
     
     category_uniques = db.get_uniques("fixed_expenses", "category")
     if len(category_uniques) == 0:
@@ -101,7 +101,7 @@ elif expense_choice == 'Fixed Expenses':
         list_of_categories = list(set(list_of_categories))
     ## add expense
     if fix_mode == 'Add Expense':
-        organisation = st.selectbox("Which organisation", list_of_organizations)
+        organisation = st.selectbox("Which organisation", list_of_organisations)
         if organisation == "other":
             fixed_organisation = st.text_input("New organisation?")
         else:
@@ -127,10 +127,10 @@ elif expense_choice == 'Fixed Expenses':
 
             fixed_modify = st.selectbox("Choose the entry by id", data.fixed_expense_id.to_list())
             
-            list_of_organizations.append(data.loc[data.fixed_expense_id == fixed_modify].organisation.to_list()[0])
+            list_of_organisations.append(data.loc[data.fixed_expense_id == fixed_modify].organisation.to_list()[0])
             list_of_categories.append(data.loc[data.fixed_expense_id == fixed_modify].category.to_list()[0])
 
-            new_organisation = st.selectbox("Change Store?",list_of_organizations, index=(len(list_of_organizations)-1))
+            new_organisation = st.selectbox("Change Store?",list_of_organisations, index=(len(list_of_organisations)-1))
             new_category = st.selectbox("Change Category?",list_of_categories, index=(len(list_of_categories)-1))
             new_amount = st.number_input("Change Amount?", data.loc[data.fixed_expense_id == fixed_modify].amount.to_list()[0])
             new_start_date = st.date_input("Change Date?", dt.datetime.strptime(data.loc[data.fixed_expense_id == fixed_modify].start_date.to_list()[0], '%Y-%M-%d'), dt.date(2021, 1, 1), dt.date(2030, 12, 31))
@@ -150,13 +150,13 @@ elif expense_choice == 'Periodic Expenses':
         "What do you want to do?",
         ('Add Expense', 'Manage Entries')
     )
-    organisation_uniques = db.get_uniques("periodic_expenses", "organization")
+    organisation_uniques = db.get_uniques("periodic_expenses", "organisation")
     if len(organisation_uniques) == 0:
-        list_of_organizations = standard_organisations
+        list_of_organisations = standard_organisations
     else:
-        organisation_uniques = db.get_uniques("periodic_expenses", "organization")[0].to_list()
-        list_of_organizations = standard_organisations + organisation_uniques
-        list_of_organizations = list(set(list_of_organizations))
+        organisation_uniques = db.get_uniques("periodic_expenses", "organisation")[0].to_list()
+        list_of_organisations = standard_organisations + organisation_uniques
+        list_of_organisations = list(set(list_of_organisations))
     
     category_uniques = db.get_uniques("periodic_expenses", "category")
     if len(category_uniques) == 0:
@@ -167,7 +167,7 @@ elif expense_choice == 'Periodic Expenses':
         list_of_categories = list(set(list_of_categories))
     ## add expense
     if peri_mode == 'Add Expense':
-        organisation = st.selectbox("Which organisation", list_of_organizations)
+        organisation = st.selectbox("Which organisation", list_of_organisations)
         if organisation == "other":
             periodic_organisation = st.text_input("New organisation?")
         else:
@@ -194,21 +194,21 @@ elif expense_choice == 'Periodic Expenses':
 
             periodic_modify = st.selectbox("Choose the entry by id", data.periodic_expense_id.to_list())
             
-            list_of_organizations.append(data.loc[data.periodic_expense_id == periodic_modify].organisation.to_list()[0])
+            list_of_organisations.append(data.loc[data.periodic_expense_id == periodic_modify].organisation.to_list()[0])
             list_of_categories.append(data.loc[data.periodic_expense_id == periodic_modify].category.to_list()[0])
 
-            new_organisation = st.selectbox("Change Store?",list_of_organizations, index=(len(list_of_organizations)-1))
+            new_organisation = st.selectbox("Change Store?",list_of_organisations, index=(len(list_of_organisations)-1))
             new_category = st.selectbox("Change Category?",list_of_categories, index=(len(list_of_categories)-1))
-            new_amount = st.number_input("Change Amount?", data.loc[data.periodic_expense_id == periodic_modify].amount.to_list()[0])
+            new_amount = st.number_input("Change Amount?", min_value=0.0,value=data.loc[data.periodic_expense_id == periodic_modify].amount.to_list()[0])
             new_start_date = st.date_input("Change Date?", dt.datetime.strptime(data.loc[data.periodic_expense_id == periodic_modify].start_date.to_list()[0], '%Y-%M-%d'), dt.date(2021, 1, 1), dt.date(2030, 12, 31))
             new_period = st.number_input("Change Period?", 2,24, data.loc[data.periodic_expense_id == periodic_modify].period.to_list()[0])
             
             periodic_change = st.sidebar.button("Commit changes?")
             periodic_delete = st.sidebar.button("Delete Expense?")
             if periodic_change == True:
-                db.change_fixed_expense(periodic_modify, [new_amount, new_organisation, new_category, new_start_date, new_period])
+                db.change_periodic_expense(periodic_modify, [new_amount, new_organisation, new_category, new_start_date, new_period])
             if periodic_delete==True:
-                db.delete_fixed_expense(periodic_modify, [new_organisation, new_category, new_amount, new_start_date, new_period])
+                db.delete_periodic_expense(periodic_modify, [new_organisation, new_category, new_amount, new_start_date, new_period])
     
 ########## Explore Data         ##############################
 elif expense_choice == 'Periodic Expenses':

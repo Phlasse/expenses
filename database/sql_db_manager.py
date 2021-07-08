@@ -30,7 +30,7 @@ def create_sql_database(db_name = database_name):
     c.execute(f"""CREATE TABLE fixed_expenses (
             fixed_expense_id integer,
             amount real,
-            organization text,
+            organisation text,
             category text,
             start_date text
             )""")
@@ -40,7 +40,7 @@ def create_sql_database(db_name = database_name):
     c.execute(f"""CREATE TABLE periodic_expenses (
             periodic_expense_id integer,
             amount real,
-            organization text,
+            organisation text,
             category text,
             start_date text,
             period integer
@@ -138,7 +138,7 @@ def change_fixed_expense(id, content, table_name="fixed_expenses", db_name=datab
     print(content[3].strftime('%Y-%m-%d'))
     c.execute(f"""Update {table_name} 
               SET   amount = {content[0]},
-                    organization = '{content[1]}',
+                    organisation = '{content[1]}',
                     category = '{content[2]}',
                     start_date = '{content[3].strftime('%Y-%m-%d')}'
               WHERE fixed_expense_id={id}""")
